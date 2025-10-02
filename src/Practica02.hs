@@ -28,6 +28,7 @@ btd [O] = 0
 btd [I] = 1
 btd (x:xs) = (2 * (btd xs)) + btd [x] 
 
+-- Ejercicio No 1 "to decimal" (Dado un número binario, esta función calcula el valor decimal de ese número.)
 toDecimal :: Binario -> Int
 toDecimal xs = btd (myReverse xs) 
 
@@ -38,6 +39,7 @@ decimalToBit :: Int -> Bit
 decimalToBit 0 = O
 decimalToBit 1 = I
 
+-- Ejercicio No 2 "to bin" (Dados número en representación decimal, esta función devuelve la representación binaria de ese número)
 toBin :: Int -> Binario
 toBin 0 = [O] 
 toBin 1 = [I] 
@@ -61,6 +63,7 @@ add (I:xs) (O:ys) = I:add xs ys
 add (O:xs) (I:ys) = I:add xs ys 
 add (I:xs) (I:ys) = O:increment (add xs ys)
 
+-- Ejercicio No 3 "suma" (La función recibe dos números binarios y regresa la suma de los mismos.)
 suma :: Binario -> Binario -> Binario
 suma x y = reverse (add (reverse x) (reverse y)) 
 
@@ -80,6 +83,7 @@ removeLast [] = []
 removeLast [a] = []
 removeLast (x:xs) = x: removeLast xs
 
+-- Ejercicio No 1 "Palindromo" (Dada una lista, esta función devuelve True si la lista es un palíndromo, False en otro caso.)
 palindromo :: Eq a => [a] -> Bool
 palindromo [] = True
 palindromo [x] = True
@@ -115,13 +119,14 @@ diferencia (x:xs) (y:ys) = if isIn x (y:ys) then
                                                 diferencia (xs) (y:ys)
                                             else
                                                 (x:diferencia xs (y:ys))
-                                        
---Funcion principal que calcula la diferencia simetrica (Aquellos elementos que esten en la union pero no en la interseccion)
+                            
+
+--Ejercicio No 2 "Diferencia Simetrica"(Funcion principal que calcula la diferencia simetrica (Aquellos elementos que esten en la union pero no en la interseccion))
 diferenciaSimetrica :: Eq a => [a] -> [a] -> [a]
 diferenciaSimetrica x y = (diferencia x y) ++ (diferencia y x)
 
 
---Conjunto potencia
+--Ejercicio No 3 "Conjunto potencia" (Dada una lista, esta función calcula el conjunto potencia de la lista ingresada.)
 conjuntoPotencia :: [a] -> [[a]]
 conjuntoPotencia [] = [[]] 
 conjuntoPotencia [x] = [[], [x]] 
@@ -132,21 +137,23 @@ conjuntoPotencia (x:xs) = conjuntoPotencia xs ++ [ x : p | p <- conjuntoPotencia
 --Esta va de regalo
 type ListaPar a b = [(a,b)]
 
---Longitud
+--Ejercicio No 1 "Longitud" (La función recibe una lista de pares y devuelve la longitud.)
 longitud :: ListaPar a b -> Int
 longitud [] = 0
 longitud [x] = 2  
 longitud (x:xs) = 2 + longitud xs  
 
---Map
+--Ejercicio No 2 "Map" (Usa la idea de la funcion Map ............)
 myMap :: (a -> c) -> (b -> d) -> ListaPar a b -> ListaPar c d 
 myMap _ _ [] = [] 
 myMap f g ((x,y):xs) = (f x, g y) : myMap f g xs
 
---Sumar pares
+--Sumar pares 
 sumaPares :: ListaPar a b -> (a,b)
-sumaPares = undefined
+sumaPares [] = (0,0)
+sumaPares [x:xs] [y:ys] = (x+y, sumaPares(xs +ys))
 
---Filter pares
+--Ejercicio No 4 "Filter pares" (Basandose en la funcion filter, filtra los numeros x,y pares de una lista, donde los dos son pares, y los devuelve en otra lista)
 myFilter :: ((a,b) -> Bool) -> ListaPar a b -> ListaPar a b
-myFilter = undefined
+myFilter p [] = []
+myFilter p ((x,y):xs) = if (p (x,y)) then (x,y) : myFilter p xs else (myFilter p xs)
