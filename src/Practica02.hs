@@ -143,10 +143,20 @@ longitud [] = 0
 longitud [x] = 2  
 longitud (x:xs) = 2 + longitud xs  
 
---Ejercicio No 2 "Map" (Usa la idea de la funcion Map ............)
+--Ejercicio No 2 "Map"
+{-
+ -La funcion recibe 2 funciones "modificadoras" y una lista de pares no vacia. 
+ - La recursion se aplica "pegando" un par ordenado cuyos elementos fueron 
+    modificados por las funciones recibidas (f x, g y) a la lista resultante de 
+    myMap xs (es decir, se aplica la recursion sobre la cola de la lista)
+    De este modo, las funciones modificadoras se aplican a cada uno
+    de los pares ordenados hasta llegar a una lista vacia, de la siguiente forma:
+    (f x, g y): (f x1, g y1) : (f x2, gx3) ... : (f xn, g yn) : []
+-}
 myMap :: (a -> c) -> (b -> d) -> ListaPar a b -> ListaPar c d 
 myMap _ _ [] = [] 
 myMap f g ((x,y):xs) = (f x, g y) : myMap f g xs
+
 
 --Ejercicio No 3 "Sumar pares" (La función recibe una lista de pares y devolver una tupla, donde la primera entrada es la suma de la primera entrada de la lista y la segunda igual)
 sumaPares :: (Num a, Num b) => ListaPar a b -> (a,b) -- Se agrego Num a y Num b para poder realizar las sumas
