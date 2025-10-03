@@ -148,10 +148,12 @@ myMap :: (a -> c) -> (b -> d) -> ListaPar a b -> ListaPar c d
 myMap _ _ [] = [] 
 myMap f g ((x,y):xs) = (f x, g y) : myMap f g xs
 
---Sumar pares 
-sumaPares :: ListaPar a b -> (a,b)
-sumaPares [] = (0,0)
-sumaPares [x:xs] [y:ys] = (x+y, sumaPares(xs +ys))
+--Ejercicio No 3 "Sumar pares" (La función recibe una lista de pares y devolver una tupla, donde la primera entrada es la suma de la primera entrada de la lista y la segunda igual)
+sumaPares :: (Num a, Num b) => ListaPar a b -> (a,b) -- Se agrego Num a y Num b para poder realizar las sumas
+sumaPares [] = (0,0) 
+sumaPares ((x,y):xs) = (x + sumx, y + sumy) -- aqui se toma los "x" y "y" que "sacamos" para sumarlo con la recursion de abajo de "sx" y "sy"
+ --Usamos where para que "sumx" haga la suma de las primeras entradas y "sumy" haga la suma de las segundas
+ where (sumx, sumy) = sumaPares xs
 
 --Ejercicio No 4 "Filter pares" (Basandose en la funcion filter, filtra los numeros x,y pares de una lista, donde los dos son pares, y los devuelve en otra lista)
 myFilter :: ((a,b) -> Bool) -> ListaPar a b -> ListaPar a b
