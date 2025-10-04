@@ -31,5 +31,6 @@ En esta sección deben eliminar esta línea de texto, borrar la leyenda "Integra
 ## Comentarios
 - Para ejecutar las funciones colocar el nombre las funciones para posteriormente realizar las pruebas necesarias
 - Seguir correctamente las instrucciones de ejecución 
+- La version de cabal en "Practica02.cabal" la modificamos para que funcionara en nuestro dispositivo, si desea probar el cabal, cambiar nuevamente la version
 
 Recuerden que opcionalmente pueden agregar un comentario (ver los lineamientos de entrega). Si es el caso, borren esta linea y dejen su comentario.
